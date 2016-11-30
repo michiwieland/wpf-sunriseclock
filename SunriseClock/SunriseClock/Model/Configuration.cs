@@ -1,4 +1,6 @@
 ﻿using PropertyChanged;
+using RestSharp.Deserializers;
+using RestSharp.Serializers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +13,9 @@ namespace SunriseClock.Model
     [ImplementPropertyChanged]
     class Configuration
     {
-        public string Hostname { get; set; }
-        public int Port { get; set; }
+        public Configuration() { }
+        [DeserializeAs(Name = "alarms")]
+        [SerializeAs(Name = "alarms")]
         public List<Alarm> Alarms { get; set; }
     }
 }

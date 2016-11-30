@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SunriseClock.Model;
+using SunriseClock.Service;
 
 namespace SunriseClock
 {
@@ -23,20 +25,28 @@ namespace SunriseClock
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-
-        public ObservableCollection<AlarmViewModel> AlarmList { get; set; }
+        ClockApi api;
+        Configuration conf;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            var list;
-            AlarmList = new ObservableCollection<AlarmViewModel>(list);
+            initData();
+            saveData();
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        public void initData()
         {
+            // TODO: Error Handling
+            api = new ClockApi();
+            conf = api.GetConfiguration();
+        }
 
+        public void saveData()
+        {
+            // TODO: Error Handling
+            api.SetConfiguration(conf);
         }
     }
 }
