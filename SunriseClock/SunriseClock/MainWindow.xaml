@@ -31,8 +31,7 @@
             <TextBox Controls:TextBoxHelper.Watermark="Hostname" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-            <Button Style="{DynamicResource CircleButton}" Command="{Binding 
-                }">
+            <Button Style="{DynamicResource CircleButton}" Command="{Binding ConfigurationSaveCommand}">
                 <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="FloppyOutline" />
             </Button>
             <Button Style="{DynamicResource CircleButton}">

@@ -29,7 +29,7 @@ namespace SunriseClock.ViewModel
         {
             get
             {
-                if (Configuration == null)
+                if (Configuration == null || Configuration.Alarms == null)
                 {
                     return false;
                 }
