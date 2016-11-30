@@ -1,6 +1,8 @@
 ﻿using MahApps.Metro.Controls;
+using SunriseClock.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +23,20 @@ namespace SunriseClock
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+
+        public ObservableCollection<AlarmViewModel> AlarmList { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+
+            var list;
+            AlarmList = new ObservableCollection<AlarmViewModel>(list);
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

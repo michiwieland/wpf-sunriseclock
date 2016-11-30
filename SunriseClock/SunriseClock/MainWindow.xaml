@@ -9,20 +9,24 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="Sunrise Clock" 
-        Height="350" 
-        Width="525"
+        Height="557.153" 
+        Width="720.753"
         GlowBrush="{DynamicResource AccentColorBrush}"
         WindowStartupLocation="CenterScreen">
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Icons.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
-
+    
+    
     <DockPanel>
+        <ListBox x:Name="listBox" ItemsSource="{Binding AlarmList}" HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <CheckBox Checked="{Binding Enabled}" />
+                        <TextBlock Text="{Binding Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <StackPanel DockPanel.Dock="Top">
             <Label Content="Hostname"/>
             <TextBox Controls:TextBoxHelper.Watermark="Hostname" />
@@ -42,8 +46,8 @@
             </Button>
         </StackPanel>
     </DockPanel>
-     
-    
+
+
 
     <!-- Configuration -->
     <Controls:MetroWindow.RightWindowCommands>
@@ -63,7 +67,7 @@
                         <TextBox Controls:TextBoxHelper.Watermark="Port" />
                     </StackPanel>
                 </Border>
-            </Controls:Flyout>>
+            </Controls:Flyout> >
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
 
