@@ -13,8 +13,6 @@ namespace SunriseClock.Model
     class Alarm
     {
 
-        public Alarm() { }
-
         [DeserializeAs(Name = "name")]
         [SerializeAs(Name = "name")]
         public string Name { get; set; }

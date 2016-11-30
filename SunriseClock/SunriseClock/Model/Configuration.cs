@@ -13,7 +13,6 @@ namespace SunriseClock.Model
     [ImplementPropertyChanged]
     class Configuration
     {
-        public Configuration() { }
         [DeserializeAs(Name = "alarms")]
         [SerializeAs(Name = "alarms")]
         public List<Alarm> Alarms { get; set; }

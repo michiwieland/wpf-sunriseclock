@@ -9,40 +9,59 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="Sunrise Clock" 
-        Height="557.153" 
-        Width="720.753"
+        Padding="30"
         GlowBrush="{DynamicResource AccentColorBrush}"
         WindowStartupLocation="CenterScreen">
 
-   
-    <DockPanel>
-        <ListBox x:Name="listBox" ItemsSource="{Binding Configuration.Alarms}" HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+    <DockPanel DataContext="{Binding Configuration.Alarms}">
+
+        <ListBox x:Name="listBox" ItemsSource="{Binding}" Style="{StaticResource AlarmsListStyle}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <CheckBox Checked="{Binding Enabled}" />
                         <TextBlock Text="{Binding Name}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel DockPanel.Dock="Top">
-            <Label Content="Hostname"/>
-            <TextBox Controls:TextBoxHelper.Watermark="Hostname" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-            <Button Style="{DynamicResource CircleButton}" Command="{Binding ConfigurationSaveCommand}">
-                <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="FloppyOutline" />
-            </Button>
-            <Button Style="{DynamicResource CircleButton}">
-                <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Plus" />
-            </Button>
-            <Button Style="{DynamicResource CircleButton}">
-                <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Cog" />
-            </Button>
-            <Button Style="{DynamicResource CircleButton}">
-                <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Trash" />
-            </Button>
+
+        <StackPanel Style="{StaticResource AlarmDetailStyle}">
+            <Label Content="Wecker Name" />
+            <TextBox Controls:TextBoxHelper.Watermark="Wecker Name" Text="{Binding Name}" />
+            <Label Content="Weckzeit" />
+            <TextBox Controls:TextBoxHelper.Watermark="Weckzeit" />
+            <Label Content="Erleuchtungszeit" />
+            <TextBox Controls:TextBoxHelper.Watermark="Erleuchtungszeit" />
+            <Label Content="Lichtdauer" />
+            <TextBox Controls:TextBoxHelper.Watermark="Lichtdauer" />
+            <Controls:ToggleSwitch Header="Aktiviert" />
+            <TextBox Controls:TextBoxHelper.Watermark="This is a textbox" />
+
+            <Label Content="Wochentage" />
+            <StackPanel Orientation="Horizontal">
+                <CheckBox />
+                <CheckBox />
+                <CheckBox />
+                <CheckBox />
+                <CheckBox />
+                <CheckBox />
+                <CheckBox />
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource ButtonToolbarStyle}">
+                <Button Style="{DynamicResource CircleButtonStyle}" Command="{Binding ConfigurationSaveCommand}">
+                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="FloppyOutline" />
+                </Button>
+                <Button Style="{DynamicResource CircleButtonStyle}">
+                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Plus" />
+                </Button>
+                <Button Style="{DynamicResource CircleButtonStyle}">
+                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Cog" />
+                </Button>
+                <Button Style="{DynamicResource CircleButtonStyle}">
+                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Trash" />
+                </Button>
+            </StackPanel>
         </StackPanel>
     </DockPanel>
 
