@@ -96,10 +96,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\AlarmCommand.cs" />
+    <Compile Include="Commands\ConfigurationSaveCommand.cs" />
     <Compile Include="Converter\WeekdayConverter.cs" />
     <Compile Include="Service\ClockApi.cs" />
-    <Compile Include="ViewModel\AlarmViewModel.cs" />
+    <Compile Include="ViewModel\ConfigurationViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

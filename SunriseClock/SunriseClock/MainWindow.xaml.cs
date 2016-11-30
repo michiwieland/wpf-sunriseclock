@@ -25,28 +25,12 @@ namespace SunriseClock
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        ClockApi api;
-        Configuration conf;
-
+       
         public MainWindow()
         {
             InitializeComponent();
 
-            initData();
-            saveData();
-        }
-
-        public void initData()
-        {
-            // TODO: Error Handling
-            api = new ClockApi();
-            conf = api.GetConfiguration();
-        }
-
-        public void saveData()
-        {
-            // TODO: Error Handling
-            api.SetConfiguration(conf);
-        }
+            DataContext = new ConfigurationViewModel();
+        }        
     }
 }

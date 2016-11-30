@@ -14,10 +14,9 @@
         GlowBrush="{DynamicResource AccentColorBrush}"
         WindowStartupLocation="CenterScreen">
 
-    
-    
+   
     <DockPanel>
-        <ListBox x:Name="listBox" ItemsSource="{Binding AlarmList}" HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+        <ListBox x:Name="listBox" ItemsSource="{Binding Configuration.Alarms}" HorizontalAlignment="Stretch" DockPanel.Dock="Top">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -32,7 +31,8 @@
             <TextBox Controls:TextBoxHelper.Watermark="Hostname" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-            <Button Style="{DynamicResource CircleButton}">
+            <Button Style="{DynamicResource CircleButton}" Command="{Binding 
+                }">
                 <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="FloppyOutline" />
             </Button>
             <Button Style="{DynamicResource CircleButton}">
