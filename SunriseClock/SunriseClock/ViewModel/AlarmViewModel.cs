@@ -30,9 +30,7 @@ namespace SunriseClock.ViewModel
             Configuration = Api.GetConfiguration();
 
             // TODO replace with HostService call
-            Host = new Host();
-            Host.Name = "clock.fh2.ch";
-            Host.Port = 80;
+            Host = HostConfiguratorService.GetHost();
         }
 
         public void AddAlarm()
