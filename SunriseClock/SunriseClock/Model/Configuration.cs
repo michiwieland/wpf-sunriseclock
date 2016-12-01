@@ -1,6 +1,7 @@
 ﻿using PropertyChanged;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,6 @@ namespace SunriseClock.Model
     class Configuration
     {
         [JsonProperty("alarms")]
-        public List<Alarm> Alarms { get; set; }
+        public ObservableCollection<Alarm> Alarms { get; set; }
     }
 }

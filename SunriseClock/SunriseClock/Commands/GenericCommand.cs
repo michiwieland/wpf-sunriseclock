@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Windows.Input;
-using SunriseClock.ViewModel;
 
 namespace SunriseClock.Commands
 {
     class GenericCommand : ICommand
     {
-        public Action Action { get; }
+        public Action<object> Action { get; }
         public Func<bool> ValidCheck { get;  }
 
-        public GenericCommand(Action action, Func<bool> validCheck)
+        public GenericCommand(Action<object> action, Func<bool> validCheck)
         {
             Action = action;
             ValidCheck = validCheck;
@@ -28,7 +27,7 @@ namespace SunriseClock.Commands
 
         public void Execute(object parameter)
         {
-            Action();
+            Action(parameter);
         }
     }
 }

@@ -20,12 +20,12 @@
                 <Button Style="{DynamicResource CircleButtonStyle}">
                     <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Cog" />
                 </Button>
-                <Button Style="{DynamicResource CircleButtonStyle}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmAddCommand}">
+                <Button Style="{DynamicResource CircleButtonStyle}" CommandParameter="{Binding}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmAddCommand}">
                     <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Plus" />
                 </Button>
             </StackPanel>
 
-            <ListBox  ItemsSource="{Binding}" Style="{StaticResource ListBoxStyle}">
+            <ListBox x:Name="AlarmListBox" ItemsSource="{Binding}" Style="{StaticResource ListBoxStyle}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
@@ -60,10 +60,10 @@
             </StackPanel>
 
             <StackPanel Style="{StaticResource ButtonToolbarStyle}">
-                <Button Style="{DynamicResource CircleButtonStyle}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmSaveCommand }">
+                <Button Style="{DynamicResource CircleButtonStyle}" CommandParameter="{Binding ElementName=AlarmListBox,Path=SelectedItem }" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmSaveCommand }">
                     <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="FloppyOutline" />
                 </Button>
-                <Button Style="{DynamicResource CircleButtonStyle}">
+                <Button Style="{DynamicResource CircleButtonStyle}" CommandParameter="{Binding ElementName=AlarmListBox,Path=SelectedItem}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmDeleteCommand }" >
                     <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Trash" />
                 </Button>
             </StackPanel>
