@@ -96,7 +96,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\AlarmSaveCommand.cs" />
+    <Compile Include="Commands\GenericCommand.cs" />
     <Compile Include="Converter\WeekdayConverter.cs" />
     <Compile Include="Model\Host.cs" />
     <Compile Include="Service\ClockApi.cs" />

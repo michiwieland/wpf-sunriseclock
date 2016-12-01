@@ -14,12 +14,18 @@ namespace SunriseClock.ViewModel
     {
         public Host Host { get; set; }
         public Configuration Configuration { get; set; }
-        public ICommand AlarmSaveCommand { get; set;  }
         public ClockApi Api { get; set; }
+
+        public ICommand AlarmAddCommand { get; set; }
+        public ICommand AlarmSaveCommand { get; set; }
+        public ICommand AlarmDeleteCommand { get; set; }
 
         public AlarmViewModel()
         {
-            AlarmSaveCommand = new AlarmSaveCommand(this);
+            AlarmAddCommand = new GenericCommand(AddAlarm, () => true ); 
+            AlarmSaveCommand = new GenericCommand(SaveChanges, CanSave);
+            AlarmDeleteCommand = new GenericCommand(SaveChanges, () => true );
+            
             Api = new ClockApi();
             Configuration = Api.GetConfiguration();
 
@@ -29,12 +35,14 @@ namespace SunriseClock.ViewModel
             Host.Port = 80;
         }
 
-        public bool CanSave
+        public void AddAlarm()
         {
-            get
-            {
-                return Configuration?.Alarms != null && Configuration.Alarms.All(a => !string.IsNullOrWhiteSpace(a.Name));
-            }
+            Configuration.Alarms.Add(new Alarm());
+        }
+        
+        public bool CanSave()
+        {
+            return Configuration?.Alarms != null && Configuration.Alarms.All(a => !string.IsNullOrWhiteSpace(a.Name));
         }
 
         public void SaveChanges()

@@ -20,7 +20,7 @@
                 <Button Style="{DynamicResource CircleButtonStyle}">
                     <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Cog" />
                 </Button>
-                <Button Style="{DynamicResource CircleButtonStyle}">
+                <Button Style="{DynamicResource CircleButtonStyle}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmAddCommand}">
                     <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Plus" />
                 </Button>
             </StackPanel>
@@ -60,7 +60,7 @@
             </StackPanel>
 
             <StackPanel Style="{StaticResource ButtonToolbarStyle}">
-                <Button Style="{DynamicResource CircleButtonStyle}" Command="{Binding ConfigurationSaveCommand}">
+                <Button Style="{DynamicResource CircleButtonStyle}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmSaveCommand }">
                     <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="FloppyOutline" />
                 </Button>
                 <Button Style="{DynamicResource CircleButtonStyle}">

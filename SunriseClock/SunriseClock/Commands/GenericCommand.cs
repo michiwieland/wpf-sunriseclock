@@ -4,13 +4,15 @@ using SunriseClock.ViewModel;
 
 namespace SunriseClock.Commands
 {
-    class AlarmSaveCommand : ICommand
+    class GenericCommand : ICommand
     {
-        public AlarmViewModel AlarmViewModel { get; set;}
+        public Action Action { get; }
+        public Func<bool> ValidCheck { get;  }
 
-        public AlarmSaveCommand(AlarmViewModel alarmViewModel)
+        public GenericCommand(Action action, Func<bool> validCheck)
         {
-            AlarmViewModel = alarmViewModel;
+            Action = action;
+            ValidCheck = validCheck;
         }
 
         public event EventHandler CanExecuteChanged
@@ -21,12 +23,12 @@ namespace SunriseClock.Commands
 
         public bool CanExecute(object parameter)
         {
-            return AlarmViewModel.CanSave;
+            return ValidCheck();
         }
 
         public void Execute(object parameter)
         {
-            AlarmViewModel.SaveChanges();
+            Action();
         }
     }
 }
