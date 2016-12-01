@@ -12,11 +12,11 @@ namespace SunriseClock.Serializer
 {
     internal class JsonSerializer : ISerializer, IDeserializer
     {
-        private readonly Newtonsoft.Json.JsonSerializer serializer;
+        private readonly Newtonsoft.Json.JsonSerializer _serializer;
 
         public JsonSerializer(Newtonsoft.Json.JsonSerializer serializer)
         {
-            this.serializer = serializer;
+            this._serializer = serializer;
         }
 
         public string ContentType
@@ -34,7 +34,7 @@ namespace SunriseClock.Serializer
             {
                 using (var jsonTextWriter = new JsonTextWriter(stringWriter))
                 {
-                    serializer.Serialize(jsonTextWriter, obj);
+                    _serializer.Serialize(jsonTextWriter, obj);
 
                     return stringWriter.ToString();
                 }
@@ -49,7 +49,7 @@ namespace SunriseClock.Serializer
             {
                 using (var jsonTextReader = new JsonTextReader(stringReader))
                 {
-                    return serializer.Deserialize<T>(jsonTextReader);
+                    return _serializer.Deserialize<T>(jsonTextReader);
                 }
             }
         }

@@ -1,11 +1,10 @@
 ﻿using PropertyChanged;
-using RestSharp.Deserializers;
-using RestSharp.Serializers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace SunriseClock.Model
 {
@@ -13,8 +12,7 @@ namespace SunriseClock.Model
     [ImplementPropertyChanged]
     class Configuration
     {
-        [DeserializeAs(Name = "alarms")]
-        [SerializeAs(Name = "alarms")]
+        [JsonProperty("alarms")]
         public List<Alarm> Alarms { get; set; }
     }
 }

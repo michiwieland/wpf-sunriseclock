@@ -1,11 +1,11 @@
 ﻿using PropertyChanged;
-using RestSharp.Deserializers;
-using RestSharp.Serializers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace SunriseClock.Model
 {
@@ -13,29 +13,24 @@ namespace SunriseClock.Model
     class Alarm
     {
 
-        [DeserializeAs(Name = "name")]
-        [SerializeAs(Name = "name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [DeserializeAs(Name = "time")]
-        [SerializeAs(Name = "time")]
+        [JsonProperty("time")]
         public DateTime AlarmTime { get; set; }
 
-        [DeserializeAs(Name = "lightDuration")]
-        [SerializeAs(Name = "lightDuration")]
+        [JsonProperty("lightDuration")]
         public int LightDuration { get; set; }
 
-        [DeserializeAs(Name = "enlightDuration")]
-        [SerializeAs(Name = "enlightDuration")]
+        [JsonProperty("enlightDuration")]
         public int EnlightDuration { get; set; }
 
-        [DeserializeAs(Name = "selected")]
-        [SerializeAs(Name = "selected")]
+        [JsonProperty("selected")]
         public bool Enabled { get; set; }
-        
+
         //TODO: This should be a set
-        [DeserializeAs(Name = "weekDays")]
-        [SerializeAs(Name = "weekDays")]
+        // [JsonConverter(typeof(StringEnumConverter))]
+        [JsonProperty("weekDays")]
         public List<Weekday> WeekDays { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SunriseClock.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,8 @@ namespace SunriseClock.Service
     {
         public Host GetHost()
         {
-            
+            // TODO: Implement save and load service
+            return new Host();
         }
     }
 }

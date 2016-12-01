@@ -99,7 +99,9 @@
     <Compile Include="Commands\GenericCommand.cs" />
     <Compile Include="Converter\WeekdayConverter.cs" />
     <Compile Include="Model\Host.cs" />
+    <Compile Include="Serializer\JsonSerializer.cs" />
     <Compile Include="Service\ClockApi.cs" />
+    <Compile Include="Service\HostConfiguratorService.cs" />
     <Compile Include="ViewModel\AlarmViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
