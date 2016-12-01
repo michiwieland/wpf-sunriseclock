@@ -4,38 +4,49 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SunriseClock"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="Sunrise Clock" 
         Padding="30"
         GlowBrush="{DynamicResource AccentColorBrush}"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Height="554.733" Width="598.064">
 
     <DockPanel DataContext="{Binding Configuration.Alarms}">
+     
+        <StackPanel Style="{StaticResource AlarmsListStyle}">
 
-        <ListBox x:Name="listBox" ItemsSource="{Binding}" Style="{StaticResource AlarmsListStyle}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            <StackPanel Style="{StaticResource ButtonToolbarStyle}">
+                <Button Style="{DynamicResource CircleButtonStyle}">
+                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Cog" />
+                </Button>
+                <Button Style="{DynamicResource CircleButtonStyle}">
+                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Plus" />
+                </Button>
+            </StackPanel>
 
+            <ListBox  ItemsSource="{Binding}" Style="{StaticResource ListBoxStyle}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </StackPanel>
+        
         <StackPanel Style="{StaticResource AlarmDetailStyle}">
             <Label Content="Wecker Name" />
             <TextBox Controls:TextBoxHelper.Watermark="Wecker Name" Text="{Binding Name}" />
             <Label Content="Weckzeit" />
-            <TextBox Controls:TextBoxHelper.Watermark="Weckzeit" />
+            <Controls:TimePicker Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Weckzeit" Culture="" />
             <Label Content="Erleuchtungszeit" />
-            <TextBox Controls:TextBoxHelper.Watermark="Erleuchtungszeit" />
+            <TextBox Controls:TextBoxHelper.Watermark="Erleuchtungszeit" Text="{Binding EnlightDuration}" />
             <Label Content="Lichtdauer" />
-            <TextBox Controls:TextBoxHelper.Watermark="Lichtdauer" />
-            <Controls:ToggleSwitch Header="Aktiviert" />
-            <TextBox Controls:TextBoxHelper.Watermark="This is a textbox" />
+            <TextBox Controls:TextBoxHelper.Watermark="Lichtdauer" Text="{Binding LightDuration}" />
+            <Controls:ToggleSwitch Header="Aktiviert" IsChecked="{Binding Enabled}" />
 
             <Label Content="Wochentage" />
             <StackPanel Orientation="Horizontal">
@@ -53,12 +64,6 @@
                     <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="FloppyOutline" />
                 </Button>
                 <Button Style="{DynamicResource CircleButtonStyle}">
-                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Plus" />
-                </Button>
-                <Button Style="{DynamicResource CircleButtonStyle}">
-                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Cog" />
-                </Button>
-                <Button Style="{DynamicResource CircleButtonStyle}">
                     <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Trash" />
                 </Button>
             </StackPanel>
@@ -74,15 +79,15 @@
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
 
-    <Controls:MetroWindow.Flyouts>
+    <Controls:MetroWindow.Flyouts >
         <Controls:FlyoutsControl>
-            <Controls:Flyout x:Name="configurationFlyout" Header="Configuration" Position="Right" Width="200">
+            <Controls:Flyout x:Name="configurationFlyout" Header="Configuration" Position="Right" Width="200"  DataContext="{Binding Host}">
                 <Border Padding="10">
                     <StackPanel VerticalAlignment="Top">
                         <Label Content="Hostname"/>
-                        <TextBox Controls:TextBoxHelper.Watermark="Hostname" />
+                        <TextBox Controls:TextBoxHelper.Watermark="Hostname" Text="{Binding Name}" />
                         <Label Content="Port"/>
-                        <TextBox Controls:TextBoxHelper.Watermark="Port" />
+                        <TextBox Controls:TextBoxHelper.Watermark="Port" Text="{Binding Port}" />
                     </StackPanel>
                 </Border>
             </Controls:Flyout> >

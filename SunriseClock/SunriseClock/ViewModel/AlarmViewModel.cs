@@ -10,31 +10,31 @@ using System.Windows.Input;
 
 namespace SunriseClock.ViewModel
 {
-    class ConfigurationViewModel
+    internal class AlarmViewModel
     {
+        public Host Host { get; set; }
         public Configuration Configuration { get; set; }
-        public ICommand ConfigurationSaveCommand { get; set;  }
+        public ICommand AlarmSaveCommand { get; set;  }
         public ClockApi Api { get; set; }
 
-        public ConfigurationViewModel()
+        public AlarmViewModel()
         {
- 
-            ConfigurationSaveCommand = new ConfigurationSaveCommand(this);
+            AlarmSaveCommand = new AlarmSaveCommand(this);
             Api = new ClockApi();
             Configuration = Api.GetConfiguration();
-        }
 
+            // TODO replace with HostService call
+            Host = new Host();
+            Host.Name = "clock.fh2.ch";
+            Host.Port = 80;
+        }
 
         public bool CanSave
         {
             get
             {
-                if (Configuration == null || Configuration.Alarms == null)
-                {
-                    return false;
-                }
-                return Configuration.Alarms.All(a => !string.IsNullOrWhiteSpace(a.Name));
-             }
+                return Configuration?.Alarms != null && Configuration.Alarms.All(a => !string.IsNullOrWhiteSpace(a.Name));
+            }
         }
 
         public void SaveChanges()

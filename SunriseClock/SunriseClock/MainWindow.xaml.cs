@@ -30,7 +30,7 @@ namespace SunriseClock
         {
             InitializeComponent();
 
-            DataContext = new ConfigurationViewModel();
+            DataContext = new AlarmViewModel();
         }        
     }
 }
