@@ -13,9 +13,13 @@
     <Style x:Key="CircleButtonStyle" TargetType="Button" BasedOn="{StaticResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
         <Setter Property="Width" Value="40"/>
         <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="5, 0"/>
     </Style>
 
-    <Style x:Key="AlarmsListStyle" TargetType="StackPanel">
+    <Style x:Key="CircleToggleButtonStyle" TargetType="ToggleButton" BasedOn="{StaticResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="2, 0"/>
     </Style>
 
     <Style x:Key="ListBoxStyle" TargetType="ListBox">

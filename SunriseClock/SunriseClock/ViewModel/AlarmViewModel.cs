@@ -41,7 +41,7 @@ namespace SunriseClock.ViewModel
         public void DeleteAlarm(object parameter)
         {
             Alarm alarm = (Alarm)parameter;
-            Configuration.Alarms.Add(alarm);
+            Configuration.Alarms.Remove(alarm);
         }
 
         public bool CanSave()

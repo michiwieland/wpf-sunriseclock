@@ -12,24 +12,26 @@
         GlowBrush="{DynamicResource AccentColorBrush}"
         WindowStartupLocation="CenterScreen" Height="554.733" Width="598.064">
 
-    <DockPanel DataContext="{Binding Configuration.Alarms}">
-     
-        <StackPanel Style="{StaticResource AlarmsListStyle}">
+    <Border Padding="20 0">
+        <DockPanel DataContext="{Binding Configuration.Alarms}">
+            <StackPanel Style="{StaticResource ButtonToolbarStyle}" DockPanel.Dock="Top">
+            <ToggleButton IsChecked="{Binding ElementName=configurationFlyout, Path=IsOpen}" Style="{DynamicResource CircleToggleButtonStyle}">
+                <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Cog"  />
+            </ToggleButton>
 
-            <StackPanel Style="{StaticResource ButtonToolbarStyle}">
-                <Button Style="{DynamicResource CircleButtonStyle}">
-                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Cog" />
-                </Button>
-                <Button Style="{DynamicResource CircleButtonStyle}" CommandParameter="{Binding}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmAddCommand}">
-                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Plus" />
-                </Button>
-            </StackPanel>
+            <Button Style="{DynamicResource CircleButtonStyle}" CommandParameter="{Binding}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmAddCommand}">
+                <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Plus" />
+            </Button>
+        </StackPanel>
 
-            <ListBox x:Name="AlarmListBox" ItemsSource="{Binding}" Style="{StaticResource ListBoxStyle}">
+
+        <StackPanel>
+              <ListBox x:Name="AlarmListBox" ItemsSource="{Binding}" Width="350" Height="350" Style="{StaticResource ListBoxStyle}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" />
+                        <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding AlarmTime, StringFormat=hh\\:mm}"  Margin="0 0 10 0" />
+                                <TextBlock Text="{Binding Name}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -41,7 +43,7 @@
             <Label Content="Wecker Name" />
             <TextBox Controls:TextBoxHelper.Watermark="Wecker Name" Text="{Binding Name}" />
             <Label Content="Weckzeit" />
-            <Controls:TimePicker Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Weckzeit" Culture="" />
+                <Controls:TimePicker Controls:TextBoxHelper.UseFloatingWatermark="True"   Controls:TextBoxHelper.Watermark="Weckzeit"/>
             <Label Content="Erleuchtungszeit" />
             <TextBox Controls:TextBoxHelper.Watermark="Erleuchtungszeit" Text="{Binding EnlightDuration}" />
             <Label Content="Lichtdauer" />
@@ -69,16 +71,10 @@
             </StackPanel>
         </StackPanel>
     </DockPanel>
-
+    </Border>
 
 
     <!-- Configuration -->
-    <Controls:MetroWindow.RightWindowCommands>
-        <Controls:WindowCommands>
-            <ToggleButton Content="Configuration" IsChecked="{Binding ElementName=configurationFlyout, Path=IsOpen}" Cursor="Hand"/>
-        </Controls:WindowCommands>
-    </Controls:MetroWindow.RightWindowCommands>
-
     <Controls:MetroWindow.Flyouts >
         <Controls:FlyoutsControl>
             <Controls:Flyout x:Name="configurationFlyout" Header="Configuration" Position="Right" Width="200"  DataContext="{Binding Host}">

@@ -1,29 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
 
 
 namespace SunriseClock.Model
 {
     // TODO: Serialization as string names
+    [JsonConverter(typeof(StringEnumConverter))]
     enum Weekday
     {
-        [JsonProperty("monday")]
+        [EnumMember(Value = "monday")]
         Monday = 1,
-        [JsonProperty("tuesday")]
+        [EnumMember(Value = "tuesday")]
         Tuesday = 2,
-        [JsonProperty("wednesday")]
+        [EnumMember(Value = "wednesday")]
         Wednesday = 3,
-        [JsonProperty("thursday")]
+        [EnumMember(Value = "thursday")]
         Thursday = 4,
-        [JsonProperty("friday")]
+        [EnumMember(Value = "friday")]
         Friday = 5,
-        [JsonProperty("saturday")]
+        [EnumMember(Value = "saturday")]
         Saturday = 6,
-        [JsonProperty("sunday")]
+        [EnumMember(Value = "sunday")]
         Sunday = 7
     }
 }
