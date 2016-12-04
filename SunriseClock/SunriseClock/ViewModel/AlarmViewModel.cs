@@ -1,12 +1,10 @@
-﻿using SunriseClock.Commands;
+﻿using System.Collections.Generic;
+using SunriseClock.Commands;
 using SunriseClock.Model;
 using SunriseClock.Service;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using SunriseClock.Converter;
 
 namespace SunriseClock.ViewModel
 {
@@ -29,7 +27,6 @@ namespace SunriseClock.ViewModel
             Api = new ClockApi();
             Configuration = Api.GetConfiguration();
 
-            // TODO replace with HostService call
             Host = HostConfiguratorService.GetHost();
         }
 

@@ -5,21 +5,22 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace SunriseClock.Converter
 {
-    class WeekdayConverter : IValueConverter
+    public class WeekdayConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return (int) value;
+            return value != null && value.Equals(parameter);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return (Weekday) value;
+            return value.Equals(true) ? parameter : null;
         }
-
     }
 }

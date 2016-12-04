@@ -28,9 +28,45 @@ namespace SunriseClock.Model
         [JsonProperty("selected")]
         public bool Enabled { get; set; }
 
+        [JsonIgnore]
+        public Weekday? Monday { get; set; }
+
+        [JsonIgnore]
+        public Weekday? Tuesday { get; set; }
+
+        [JsonIgnore]
+        public Weekday? Wednesday { get; set; }
+
+        [JsonIgnore]
+        public Weekday? Thursday { get; set; }
+
+        [JsonIgnore]
+        public Weekday? Friday { get; set; }
+
+        [JsonIgnore]
+        public Weekday? Saturday { get; set; }
+
+        [JsonIgnore]
+        public Weekday? Sunday { get; set; }
+
         //TODO: This should be a set
         // [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("weekDays")]
-        public List<Weekday> WeekDays { get; set; }
+        public List<Weekday> WeekDays
+        {
+            get
+            {
+                List<Weekday> weekdays = new List<Weekday>();
+                if ( Monday != null ) weekdays.Add(Weekday.Monday);
+                if (Tuesday != null) weekdays.Add(Weekday.Tuesday);
+                if (Wednesday != null) weekdays.Add(Weekday.Wednesday);
+                if (Thursday != null) weekdays.Add(Weekday.Thursday);
+                if (Friday != null) weekdays.Add(Weekday.Friday);
+                if (Saturday != null) weekdays.Add(Weekday.Saturday);
+                if (Sunday != null) weekdays.Add(Weekday.Sunday);
+                return weekdays;
+            }
+            set { WeekDays = value; }
+        }
     }
 }

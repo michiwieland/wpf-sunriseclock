@@ -6,71 +6,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:SunriseClock"
+        xmlns:converter="clr-namespace:SunriseClock.Converter"
+        xmlns:viewModel="clr-namespace:SunriseClock.ViewModel"
+        xmlns:model="clr-namespace:SunriseClock.Model"
         mc:Ignorable="d"
         Title="Sunrise Clock" 
         Padding="30"
         GlowBrush="{DynamicResource AccentColorBrush}"
-        WindowStartupLocation="CenterScreen" Height="554.733" Width="598.064">
+        WindowStartupLocation="CenterScreen" Height="600" Width="650">
 
     <Border Padding="20 0">
         <DockPanel DataContext="{Binding Configuration.Alarms}">
             <StackPanel Style="{StaticResource ButtonToolbarStyle}" DockPanel.Dock="Top">
-            <ToggleButton IsChecked="{Binding ElementName=configurationFlyout, Path=IsOpen}" Style="{DynamicResource CircleToggleButtonStyle}">
-                <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Cog"  />
-            </ToggleButton>
+                <ToggleButton IsChecked="{Binding ElementName=configurationFlyout, Path=IsOpen}" Style="{DynamicResource CircleToggleButtonStyle}">
+                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Cog"  />
+                </ToggleButton>
 
-            <Button Style="{DynamicResource CircleButtonStyle}" CommandParameter="{Binding}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmAddCommand}">
-                <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Plus" />
-            </Button>
-        </StackPanel>
+                <Button Style="{DynamicResource CircleButtonStyle}" CommandParameter="{Binding}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmAddCommand}">
+                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Plus" />
+                </Button>
+            </StackPanel>
 
 
-        <StackPanel>
-              <ListBox x:Name="AlarmListBox" ItemsSource="{Binding}" Width="350" Height="350" Style="{StaticResource ListBoxStyle}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <ListBox x:Name="AlarmListBox" ItemsSource="{Binding}" Width="350" Height="350" Style="{StaticResource ListBoxStyle}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding AlarmTime, StringFormat=hh\\:mm}"  Margin="0 0 10 0" />
                                 <TextBlock Text="{Binding Name}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
 
-        </StackPanel>
-        
-        <StackPanel Style="{StaticResource AlarmDetailStyle}">
-            <Label Content="Wecker Name" />
-            <TextBox Controls:TextBoxHelper.Watermark="Wecker Name" Text="{Binding Name}" />
-            <Label Content="Weckzeit" />
+            <StackPanel Style="{StaticResource AlarmDetailStyle}">
+                <Label Content="Wecker Name" />
+                <TextBox Controls:TextBoxHelper.Watermark="Wecker Name" Text="{Binding Name}" />
+                <Label Content="Weckzeit" />
                 <Controls:TimePicker Controls:TextBoxHelper.UseFloatingWatermark="True"   Controls:TextBoxHelper.Watermark="Weckzeit"/>
-            <Label Content="Erleuchtungszeit" />
-            <TextBox Controls:TextBoxHelper.Watermark="Erleuchtungszeit" Text="{Binding EnlightDuration}" />
-            <Label Content="Lichtdauer" />
-            <TextBox Controls:TextBoxHelper.Watermark="Lichtdauer" Text="{Binding LightDuration}" />
-            <Controls:ToggleSwitch Header="Aktiviert" IsChecked="{Binding Enabled}" />
+                <Label Content="Erleuchtungszeit" />
+                <TextBox Controls:TextBoxHelper.Watermark="Erleuchtungszeit" Text="{Binding EnlightDuration}" />
+                <Label Content="Lichtdauer" />
+                <TextBox Controls:TextBoxHelper.Watermark="Lichtdauer" Text="{Binding LightDuration}" />
+                <Controls:ToggleSwitch Header="Aktiviert" IsChecked="{Binding Enabled}" />
 
-            <Label Content="Wochentage" />
-            <StackPanel Orientation="Horizontal">
-                <CheckBox />
-                <CheckBox />
-                <CheckBox />
-                <CheckBox />
-                <CheckBox />
-                <CheckBox />
-                <CheckBox />
+                <Label Content="Wochentage" />
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <converter:WeekdayConverter x:Key="WeekdayConverter" />
+                    </StackPanel.Resources>
+                    <CheckBox IsChecked="{Binding Path=Monday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Monday}}" Content="Monday"/>
+                    <CheckBox IsChecked="{Binding Path=Tuesday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Tuesday}}" Content="Tuesday"/>
+                    <CheckBox IsChecked="{Binding Path=Wednesday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Wednesday}}" Content="Wednesday"/>
+                    <CheckBox IsChecked="{Binding Path=Thursday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Tuesday}}" Content="Thursday"/>
+                    <CheckBox IsChecked="{Binding Path=Friday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Friday}}" Content="Friday"/>
+                    <CheckBox IsChecked="{Binding Path=Saturday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Saturday}}" Content="Saturday"/>
+                    <CheckBox IsChecked="{Binding Path=Sunday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Sunday}}" Content="Sunday"/>
+                </StackPanel>
+               
+                
+                <StackPanel Style="{StaticResource ButtonToolbarStyle}">
+                    <Button Style="{DynamicResource CircleButtonStyle}" CommandParameter="{Binding ElementName=AlarmListBox,Path=SelectedItem }" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmSaveCommand }">
+                        <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="FloppyOutline" />
+                    </Button>
+                    <Button Style="{DynamicResource CircleButtonStyle}" CommandParameter="{Binding ElementName=AlarmListBox,Path=SelectedItem}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmDeleteCommand }" >
+                        <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Trash" />
+                    </Button>
+                </StackPanel>
             </StackPanel>
-
-            <StackPanel Style="{StaticResource ButtonToolbarStyle}">
-                <Button Style="{DynamicResource CircleButtonStyle}" CommandParameter="{Binding ElementName=AlarmListBox,Path=SelectedItem }" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmSaveCommand }">
-                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="FloppyOutline" />
-                </Button>
-                <Button Style="{DynamicResource CircleButtonStyle}" CommandParameter="{Binding ElementName=AlarmListBox,Path=SelectedItem}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmDeleteCommand }" >
-                    <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Trash" />
-                </Button>
-            </StackPanel>
-        </StackPanel>
-    </DockPanel>
+        </DockPanel>
     </Border>
 
 
