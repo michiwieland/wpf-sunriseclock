@@ -11,7 +11,7 @@ namespace SunriseClock.Model
 {
 
     [ImplementPropertyChanged]
-    class Configuration
+    public class Configuration
     {
         [JsonProperty("alarms")]
         public ObservableCollection<Alarm> Alarms { get; set; }

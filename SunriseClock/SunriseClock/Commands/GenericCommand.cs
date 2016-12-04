@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace SunriseClock.Commands
 {
-    class GenericCommand : ICommand
+    public class GenericCommand : ICommand
     {
         public Action<object> Action { get; }
         public Func<bool> ValidCheck { get;  }

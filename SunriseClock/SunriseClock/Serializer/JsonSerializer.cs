@@ -10,7 +10,7 @@ using RestSharp.Deserializers;
 
 namespace SunriseClock.Serializer
 {
-    internal class JsonSerializer : ISerializer, IDeserializer
+    public class JsonSerializer : ISerializer, IDeserializer
     {
         private readonly Newtonsoft.Json.JsonSerializer _serializer;
 

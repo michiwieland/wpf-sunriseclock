@@ -10,7 +10,7 @@ using Newtonsoft.Json.Converters;
 namespace SunriseClock.Model
 {
     [ImplementPropertyChanged]
-    class Alarm
+    public class Alarm
     {
 
         [JsonProperty("name")]

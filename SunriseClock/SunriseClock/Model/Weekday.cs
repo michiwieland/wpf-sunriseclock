@@ -7,7 +7,7 @@ namespace SunriseClock.Model
 {
     // TODO: Serialization as string names
     [JsonConverter(typeof(StringEnumConverter))]
-    enum Weekday
+    public enum Weekday
     {
         [EnumMember(Value = "monday")]
         Monday = 1,

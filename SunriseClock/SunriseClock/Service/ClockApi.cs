@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SunriseClock.Service
 {
-    class ClockApi
+    public class ClockApi
     {
         System.Uri BaseUrl = new Uri("http://clock.fh2.ch/api/v2/");
 

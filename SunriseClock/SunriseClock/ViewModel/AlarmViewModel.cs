@@ -8,7 +8,7 @@ using SunriseClock.Converter;
 
 namespace SunriseClock.ViewModel
 {
-    internal class AlarmViewModel
+    public class AlarmViewModel
     {
         public Host Host { get; set; }
         public Configuration Configuration { get; set; }

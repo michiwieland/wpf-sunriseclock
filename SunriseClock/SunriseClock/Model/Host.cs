@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 namespace SunriseClock.Model
 {
     [ImplementPropertyChanged]
-    class Host
+    public class Host
     {
         [JsonProperty("name")]
         public string Name { get; set; }
