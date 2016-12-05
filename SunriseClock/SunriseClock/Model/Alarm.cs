@@ -25,73 +25,67 @@ namespace SunriseClock.Model
         public bool Enabled { get; set; }
 
         [JsonIgnore]
-        public Weekday? Monday { get; set; }
+        public bool Monday { get; set; }
 
         [JsonIgnore]
-        public Weekday? Tuesday { get; set; }
+        public bool Tuesday { get; set; }
 
         [JsonIgnore]
-        public Weekday? Wednesday { get; set; }
+        public bool Wednesday { get; set; }
 
         [JsonIgnore]
-        public Weekday? Thursday { get; set; }
+        public bool Thursday { get; set; }
 
         [JsonIgnore]
-        public Weekday? Friday { get; set; }
+        public bool Friday { get; set; }
 
         [JsonIgnore]
-        public Weekday? Saturday { get; set; }
+        public bool Saturday { get; set; }
 
         [JsonIgnore]
-        public Weekday? Sunday { get; set; }
-
-        //TODO: This should be a set
-        // [JsonConverter(typeof(StringEnumConverter))]
-        [JsonIgnore]
-        private List<Weekday> _weekdays = new List<Weekday>();
+        public bool Sunday { get; set; }
 
         [JsonProperty("weekDays")]
         public List<Weekday> WeekDays
         {
             get
             {
-                _weekdays.Clear();
-                if (Monday != null) _weekdays.Add(Weekday.Monday);
-                if (Tuesday != null) _weekdays.Add(Weekday.Tuesday);
-                if (Wednesday != null) _weekdays.Add(Weekday.Wednesday);
-                if (Thursday != null) _weekdays.Add(Weekday.Thursday);
-                if (Friday != null) _weekdays.Add(Weekday.Friday);
-                if (Saturday != null) _weekdays.Add(Weekday.Saturday);
-                if (Sunday != null) _weekdays.Add(Weekday.Sunday);
-                return _weekdays;
+                var weekdays = new List<Weekday>();
+                if (Monday) weekdays.Add(Weekday.Monday);
+                if (Tuesday) weekdays.Add(Weekday.Tuesday);
+                if (Wednesday) weekdays.Add(Weekday.Wednesday);
+                if (Thursday) weekdays.Add(Weekday.Thursday);
+                if (Friday) weekdays.Add(Weekday.Friday);
+                if (Saturday) weekdays.Add(Weekday.Saturday);
+                if (Sunday) weekdays.Add(Weekday.Sunday);
+                return weekdays.Count == 0? null : weekdays;
             }
             set
             {
-                _weekdays = value;
                 foreach (var weekday in value)
                 {
                     switch (weekday)
                     {
                         case Weekday.Monday:
-                            Monday = Weekday.Monday;
+                            Monday = true;
                             break;
                         case Weekday.Tuesday:
-                            Tuesday = Weekday.Tuesday;
+                            Tuesday = true;
                             break;
                         case Weekday.Wednesday:
-                            Wednesday = Weekday.Wednesday;
+                            Wednesday = true;
                             break;
                         case Weekday.Thursday:
-                            Thursday = Weekday.Thursday;
+                            Thursday = true;
                             break;
                         case Weekday.Friday:
-                            Friday = Weekday.Friday;
+                            Friday = true;
                             break;
                         case Weekday.Saturday:
-                            Saturday = Weekday.Saturday;
+                            Saturday = true;
                             break;
                         case Weekday.Sunday:
-                            Sunday = Weekday.Sunday;
+                            Sunday = true;
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();
