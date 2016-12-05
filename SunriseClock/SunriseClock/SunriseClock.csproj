@@ -99,7 +99,6 @@
     </ApplicationDefinition>
     <Compile Include="Commands\GenericCommand.cs" />
     <Compile Include="Converter\DateTimeConverter.cs" />
-    <Compile Include="Converter\WeekdayConverter.cs" />
     <Compile Include="Model\Host.cs" />
     <Compile Include="Serializer\JsonSerializer.cs" />
     <Compile Include="Service\ClockApi.cs" />
