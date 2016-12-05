@@ -5,7 +5,6 @@ using SunriseClock.Model;
 using SunriseClock.Service;
 using System.Linq;
 using System.Windows.Input;
-using SunriseClock.Converter;
 
 namespace SunriseClock.ViewModel
 {
@@ -22,8 +21,8 @@ namespace SunriseClock.ViewModel
         public AlarmViewModel()
         {
             AlarmAddCommand = new GenericCommand(AddAlarm, () => true ); 
-            AlarmSaveCommand = new GenericCommand(SaveChanges, CanSave);
-            AlarmDeleteCommand = new GenericCommand(DeleteAlarm, () => true );
+            AlarmSaveCommand = new GenericCommand(SaveChanges, CanSaveOrDelete);
+            AlarmDeleteCommand = new GenericCommand(DeleteAlarm, CanSaveOrDelete);
 
             Host = HostConfiguratorService.GetHost();
 
@@ -33,7 +32,12 @@ namespace SunriseClock.ViewModel
 
         public void AddAlarm(object parameter)
         {
-            Configuration.Alarms.Add(new Alarm());
+            var newAlarm = new Alarm
+            {
+                Name = "[Neuer Alarm]",
+                AlarmTime = new DateTime() + new TimeSpan(7, 30, 0)
+            };
+            Configuration.Alarms.Add(newAlarm);
         }
 
         public void DeleteAlarm(object parameter)
@@ -42,9 +46,14 @@ namespace SunriseClock.ViewModel
             Configuration.Alarms.Remove(alarm);
         }
 
-        public bool CanSave()
+        public bool CanSaveOrDelete()
         {
-            return Configuration?.Alarms != null && Configuration.Alarms.All(a => !string.IsNullOrWhiteSpace(a.Name));
+            return Configuration?.Alarms != null && Configuration.Alarms.All(
+                a => !string.IsNullOrWhiteSpace(a.Name) &&
+                a.AlarmTime.Hour >= 0 &&
+                a.AlarmTime.Minute >= 0 &&
+                a.EnlightDuration > 0 &&
+                a.LightDuration > 0);
         }
 
         public void SaveChanges(object parameter)
