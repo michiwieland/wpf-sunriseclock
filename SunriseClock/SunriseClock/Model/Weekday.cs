@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 
 namespace SunriseClock.Model
 {
-    // TODO: Serialization as string names
     [JsonConverter(typeof(StringEnumConverter))]
     public enum Weekday
     {

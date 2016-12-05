@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using SunriseClock.Commands;
 using SunriseClock.Model;
 using SunriseClock.Service;
@@ -34,7 +33,6 @@ namespace SunriseClock.ViewModel
         {
             var newAlarm = new Alarm
             {
-                Name = "[Neuer Alarm]",
                 AlarmTime = new DateTime() + new TimeSpan(7, 30, 0)
             };
             Configuration.Alarms.Add(newAlarm);
@@ -44,6 +42,7 @@ namespace SunriseClock.ViewModel
         {
             Alarm alarm = (Alarm)parameter;
             Configuration.Alarms.Remove(alarm);
+            SaveChanges(parameter);
         }
 
         public bool CanSaveOrDelete()
