@@ -3,6 +3,7 @@ using SunriseClock.Commands;
 using SunriseClock.Model;
 using SunriseClock.Service;
 using System.Linq;
+using System.Net;
 using System.Windows.Input;
 
 namespace SunriseClock.ViewModel
@@ -26,7 +27,14 @@ namespace SunriseClock.ViewModel
             Host = HostConfiguratorService.GetHost();
 
             Api = new ClockApi(new Uri("http://" + Host.Name + ":" + Host.Port + "/api/v2/"));
-            Configuration = Api.GetConfiguration();
+            try
+            {
+                Configuration = Api.GetConfiguration();
+            }
+            catch (WebException)
+            {
+                // Configuration is invalid.
+            }
         }
 
         public void AddAlarm(object parameter)
