@@ -10,12 +10,16 @@ namespace SunriseClock.Service
 {
     public class ClockApi
     {
-        System.Uri BaseUrl = new Uri("http://clock.fh2.ch/api/v2/");
+        public ClockApi(Uri baseUri)
+        {
+            this._baseUrl = baseUri;
+        }
+
+        private readonly Uri _baseUrl;
 
         public T Execute<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient();
-            client.BaseUrl = BaseUrl;
+            var client = new RestClient {BaseUrl = _baseUrl};
 
             // Override with Newtonsoft JSON Handler
             client.AddHandler("application/json", Serializer.JsonSerializer.Default);
