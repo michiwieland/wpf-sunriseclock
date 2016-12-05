@@ -57,7 +57,7 @@ namespace SunriseClock.Model
             get
             {
                 List<Weekday> weekdays = new List<Weekday>();
-                if ( Monday != null ) weekdays.Add(Weekday.Monday);
+                if (Monday != null) weekdays.Add(Weekday.Monday);
                 if (Tuesday != null) weekdays.Add(Weekday.Tuesday);
                 if (Wednesday != null) weekdays.Add(Weekday.Wednesday);
                 if (Thursday != null) weekdays.Add(Weekday.Thursday);
@@ -66,7 +66,38 @@ namespace SunriseClock.Model
                 if (Sunday != null) weekdays.Add(Weekday.Sunday);
                 return weekdays;
             }
-            set { WeekDays = value; }
+            set
+            {
+                WeekDays = value;
+                foreach (var weekday in value)
+                {
+                    switch (weekday)
+                    {
+                        case Weekday.Monday:
+                            Monday = Weekday.Monday;
+                            break;
+                        case Weekday.Tuesday:
+                            Tuesday = Weekday.Tuesday;
+                            break;
+                        case Weekday.Wednesday:
+                            Wednesday = Weekday.Wednesday;
+                            break;
+                        case Weekday.Thursday:
+                            Thursday = Weekday.Thursday;
+                            break;
+                        case Weekday.Friday:
+                            Friday = Weekday.Friday;
+                            break;
+                        case Weekday.Saturday:
+                            Saturday = Weekday.Saturday;
+                            break;
+                        case Weekday.Sunday:
+                            Sunday = Weekday.Sunday;
+                            break;
+                    }
+                }
+                
+            }
         }
     }
 }
