@@ -47,7 +47,7 @@
                 <Label Content="Wecker Name" />
                 <TextBox controls:TextBoxHelper.Watermark="Wecker Name" Text="{Binding Name}" />
                 <Label Content="Weckzeit" />
-                <controls:TimePicker controls:TextBoxHelper.Watermark="Weckzeit" SelectedTime="{Binding AlarmTime, Converter={StaticResource DateTimeConverter}, StringFormat=hh\\:mm}" Culture="de-de" />
+                <controls:TimePicker controls:TextBoxHelper.Watermark="Weckzeit" SelectedTime="{Binding AlarmTime, Converter={StaticResource DateTimeConverter}}" Culture="de-de" />
                 <Label Content="Erleuchtungszeit" />
                 <TextBox controls:TextBoxHelper.Watermark="Erleuchtungszeit" Text="{Binding EnlightDuration}" />
                 <Label Content="Lichtdauer" />
