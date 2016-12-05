@@ -59,13 +59,13 @@
                     <StackPanel.Resources>
                         <converter:WeekdayConverter x:Key="WeekdayConverter" />
                     </StackPanel.Resources>
-                    <CheckBox IsChecked="{Binding Path=Monday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Monday}}" Content="Monday"/>
-                    <CheckBox IsChecked="{Binding Path=Tuesday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Tuesday}}" Content="Tuesday"/>
-                    <CheckBox IsChecked="{Binding Path=Wednesday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Wednesday}}" Content="Wednesday"/>
-                    <CheckBox IsChecked="{Binding Path=Thursday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Thursday}}" Content="Thursday"/>
-                    <CheckBox IsChecked="{Binding Path=Friday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Friday}}" Content="Friday"/>
-                    <CheckBox IsChecked="{Binding Path=Saturday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Saturday}}" Content="Saturday"/>
-                    <CheckBox IsChecked="{Binding Path=Sunday, Converter={StaticResource WeekdayConverter}, ConverterParameter={x:Static model:Weekday.Sunday}}" Content="Sunday"/>
+                    <CheckBox IsChecked="{Binding Path=Monday}" Content="Monday"/>
+                    <CheckBox IsChecked="{Binding Path=Tuesday}" Content="Tuesday"/>
+                    <CheckBox IsChecked="{Binding Path=Wednesday}" Content="Wednesday"/>
+                    <CheckBox IsChecked="{Binding Path=Thursday}" Content="Thursday"/>
+                    <CheckBox IsChecked="{Binding Path=Friday}" Content="Friday"/>
+                    <CheckBox IsChecked="{Binding Path=Saturday}" Content="Saturday"/>
+                    <CheckBox IsChecked="{Binding Path=Sunday}" Content="Sunday"/>
                 </StackPanel>
                
                 <StackPanel Style="{StaticResource ButtonToolbarStyle}">
