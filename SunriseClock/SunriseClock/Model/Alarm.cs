@@ -91,7 +91,6 @@ namespace SunriseClock.Model
                             throw new ArgumentOutOfRangeException();
                     }
                 }
-                
             }
         }
     }

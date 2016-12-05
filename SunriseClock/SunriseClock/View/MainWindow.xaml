@@ -7,16 +7,18 @@
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:converter="clr-namespace:SunriseClock.Converter"
-        xmlns:model="clr-namespace:SunriseClock.Model"
         mc:Ignorable="d"
         Title="Sunrise Clock" 
         Padding="30"
         GlowBrush="{DynamicResource AccentColorBrush}"
-        WindowStartupLocation="CenterScreen" Height="660" Width="650">
+        WindowStartupLocation="CenterScreen" Height="480"  Width="900">
 
     <Border Padding="20 0">
+        
         <DockPanel DataContext="{Binding Configuration.Alarms}">
-            <StackPanel Style="{StaticResource ButtonToolbarStyle}" DockPanel.Dock="Top">
+           
+            <!-- Button Toolbar -->
+            <StackPanel Style="{StaticResource ButtonToolbarStyle}" Margin="0, 10">
                 <ToggleButton IsChecked="{Binding ElementName=configurationFlyout, Path=IsOpen}" Style="{DynamicResource CircleToggleButtonStyle}">
                     <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="Cog"  />
                 </ToggleButton>
@@ -26,7 +28,7 @@
                 </Button>
             </StackPanel>
 
-
+            <!-- Alarm List -->
             <StackPanel>
                 <ListBox x:Name="AlarmListBox" ItemsSource="{Binding}" Width="350" Height="350" Style="{StaticResource ListBoxStyle}" Foreground="Black">
                     <ListBox.ItemTemplate>
@@ -40,33 +42,40 @@
                 </ListBox>
             </StackPanel>
 
-            <StackPanel Style="{StaticResource AlarmDetailStyle}">
+            <!-- Alarm Detail -->
+            <StackPanel Margin="50, 0">
                 <StackPanel.Resources>
                     <converter:DateTimeConverter x:Key="DateTimeConverter"/>
                 </StackPanel.Resources>
+                
                 <Label Content="Wecker Name" />
                 <TextBox controls:TextBoxHelper.Watermark="Wecker Name" Text="{Binding Name}" />
+                
                 <Label Content="Weckzeit" />
                 <controls:TimePicker controls:TextBoxHelper.Watermark="Weckzeit" SelectedTime="{Binding AlarmTime, Converter={StaticResource DateTimeConverter}}" Culture="de-de" />
                 
                 <Label Content="Erleuchtungszeit" />
                 <TextBox controls:TextBoxHelper.Watermark="Erleuchtungszeit" Text="{Binding EnlightDuration}" />
+                
                 <Label Content="Lichtdauer" />
                 <TextBox controls:TextBoxHelper.Watermark="Lichtdauer" Text="{Binding LightDuration}" />
-                <controls:ToggleSwitch Header="Aktiviert" IsChecked="{Binding Enabled}" />
 
+                <Label Content="Aktiviert" />
+                <controls:ToggleSwitch IsChecked="{Binding Enabled}"/>
+
+            </StackPanel>
+            
+            <StackPanel DockPanel.Dock="Right">
                 <Label Content="Wochentage" />
-                <StackPanel>
-                    <CheckBox IsChecked="{Binding Path=Monday}" Content="Monday"/>
-                    <CheckBox IsChecked="{Binding Path=Tuesday}" Content="Tuesday"/>
-                    <CheckBox IsChecked="{Binding Path=Wednesday}" Content="Wednesday"/>
-                    <CheckBox IsChecked="{Binding Path=Thursday}" Content="Thursday"/>
-                    <CheckBox IsChecked="{Binding Path=Friday}" Content="Friday"/>
-                    <CheckBox IsChecked="{Binding Path=Saturday}" Content="Saturday"/>
-                    <CheckBox IsChecked="{Binding Path=Sunday}" Content="Sunday"/>
-                </StackPanel>
-               
-                <StackPanel Style="{StaticResource ButtonToolbarStyle}">
+                <controls:ToggleSwitch OffLabel="Montag" OnLabel="Montag" IsChecked="{Binding Monday}" />
+                <controls:ToggleSwitch OffLabel="Dienstag" OnLabel="Dienstag" IsChecked="{Binding Tuesday}" />
+                <controls:ToggleSwitch OffLabel="Mittwoch" OnLabel="Mittwoch" IsChecked="{Binding Wednesday}" />
+                <controls:ToggleSwitch OffLabel="Donnerstag" OnLabel="Donnerstag" IsChecked="{Binding Thursday}" />
+                <controls:ToggleSwitch OffLabel="Freitag" OnLabel="Freitag" IsChecked="{Binding Friday}" />
+                <controls:ToggleSwitch OffLabel="Samstag" OnLabel="Samstag" IsChecked="{Binding Saturday}" />
+                <controls:ToggleSwitch OffLabel="Sonntag" OnLabel="Sonntag" IsChecked="{Binding Sunday}" />
+
+                <StackPanel Style="{StaticResource ButtonToolbarStyle}" HorizontalAlignment="Right">
                     <Button Style="{DynamicResource CircleButtonStyle}" CommandParameter="{Binding ElementName=AlarmListBox,Path=SelectedItem }" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.AlarmSaveCommand }">
                         <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="FloppyOutline" />
                     </Button>
@@ -75,9 +84,10 @@
                     </Button>
                 </StackPanel>
             </StackPanel>
+
+            
         </DockPanel>
     </Border>
-
 
     <!-- Configuration -->
     <controls:MetroWindow.Flyouts >
@@ -94,10 +104,5 @@
             </controls:Flyout> >
         </controls:FlyoutsControl>
     </controls:MetroWindow.Flyouts>
-
-
-
-
-
 
 </controls:MetroWindow>
