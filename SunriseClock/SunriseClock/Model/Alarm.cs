@@ -1,11 +1,7 @@
 ﻿using PropertyChanged;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace SunriseClock.Model
 {
@@ -51,7 +47,9 @@ namespace SunriseClock.Model
 
         //TODO: This should be a set
         // [JsonConverter(typeof(StringEnumConverter))]
+        [JsonIgnore]
         private List<Weekday> _weekdays = new List<Weekday>();
+
         [JsonProperty("weekDays")]
         public List<Weekday> WeekDays
         {
@@ -70,7 +68,7 @@ namespace SunriseClock.Model
             set
             {
                 _weekdays = value;
-                foreach (var weekday in _weekdays)
+                foreach (var weekday in value)
                 {
                     switch (weekday)
                     {
@@ -95,6 +93,8 @@ namespace SunriseClock.Model
                         case Weekday.Sunday:
                             Sunday = Weekday.Sunday;
                             break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
                 }
                 
