@@ -26,17 +26,21 @@ namespace SunriseClock.ViewModel
 
             Host = HostConfiguratorService.GetHost();
 
-            Api = new ClockApi(new Uri("http://" + Host.Name + ":" + Host.Port + "/api/v2/"));
             try
             {
+                Api = new ClockApi(new Uri("http://" + (Host.Name ?? "localhost") + ":" + Host.Port + "/api/v2/"));
                 Configuration = Api.GetConfiguration();
             }
             catch (WebException)
             {
                 // Configuration is invalid.
             }
-        }
+            catch (UriFormatException)
+            {
+                // There is no valid hostname or port (yet)
+            }
 
+        }
         public void AddAlarm(object parameter)
         {
             var newAlarm = new Alarm
