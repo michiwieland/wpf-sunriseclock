@@ -51,26 +51,26 @@ namespace SunriseClock.Model
 
         //TODO: This should be a set
         // [JsonConverter(typeof(StringEnumConverter))]
-        private List<Weekday> _weekdays;
+        private List<Weekday> _weekdays = new List<Weekday>();
         [JsonProperty("weekDays")]
         public List<Weekday> WeekDays
         {
             get
             {
-                List<Weekday> weekdays = new List<Weekday>();
-                if (Monday != null) weekdays.Add(Weekday.Monday);
-                if (Tuesday != null) weekdays.Add(Weekday.Tuesday);
-                if (Wednesday != null) weekdays.Add(Weekday.Wednesday);
-                if (Thursday != null) weekdays.Add(Weekday.Thursday);
-                if (Friday != null) weekdays.Add(Weekday.Friday);
-                if (Saturday != null) weekdays.Add(Weekday.Saturday);
-                if (Sunday != null) weekdays.Add(Weekday.Sunday);
+                _weekdays.Clear();
+                if (Monday != null) _weekdays.Add(Weekday.Monday);
+                if (Tuesday != null) _weekdays.Add(Weekday.Tuesday);
+                if (Wednesday != null) _weekdays.Add(Weekday.Wednesday);
+                if (Thursday != null) _weekdays.Add(Weekday.Thursday);
+                if (Friday != null) _weekdays.Add(Weekday.Friday);
+                if (Saturday != null) _weekdays.Add(Weekday.Saturday);
+                if (Sunday != null) _weekdays.Add(Weekday.Sunday);
                 return _weekdays;
             }
             set
             {
                 _weekdays = value;
-                foreach (var weekday in WeekDays)
+                foreach (var weekday in _weekdays)
                 {
                     switch (weekday)
                     {

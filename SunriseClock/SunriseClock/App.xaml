@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:SunriseClock"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:model="clr-namespace:SunriseClock.Model"
-             StartupUri="MainWindow.xaml">
+             StartupUri="View/MainWindow.xaml">
     <Application.Resources>
         
         
