@@ -7,12 +7,14 @@ namespace SunriseClock.Converter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return (DateTime) value - new DateTime(2010,10,10);
+            var timeOfDay = ((DateTime)value).TimeOfDay;
+            return timeOfDay;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return new DateTime(2010, 10, 10) + (TimeSpan) value;
+            var convertBack = new DateTime() + ((TimeSpan)value);
+            return convertBack;
         }
     }
 }
